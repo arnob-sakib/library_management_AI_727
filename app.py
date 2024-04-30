@@ -40,9 +40,8 @@ def members():
     # Render Template
     if result > 0:
         return render_template('members.html', members=members)
-    else:
-        msg = 'No Members Found'
-        return render_template('members.html', warning=msg)
+    msg = 'No Members Found'
+    return render_template('members.html', warning=msg)
 
     # Close DB Connection
     cur.close()
@@ -61,9 +60,8 @@ def viewMember(id):
     # Render Template
     if result > 0:
         return render_template('view_member_details.html', member=member)
-    else:
-        msg = 'This Member Does Not Exist'
-        return render_template('view_member_details.html', warning=msg)
+    msg = 'This Member Does Not Exist'
+    return render_template('view_member_details.html', warning=msg)
 
     # Close DB Connection
     cur.close()
@@ -196,9 +194,8 @@ def books():
     # Render Template
     if result > 0:
         return render_template('books.html', books=books)
-    else:
-        msg = 'No Books Found'
-        return render_template('books.html', warning=msg)
+    msg = 'No Books Found'
+    return render_template('books.html', warning=msg)
 
     # Close DB Connection
     cur.close()
@@ -217,9 +214,8 @@ def viewBook(id):
     # Render Template
     if result > 0:
         return render_template('view_book_details.html', book=book)
-    else:
-        msg = 'This Book Does Not Exist'
-        return render_template('view_book_details.html', warning=msg)
+    msg = 'This Book Does Not Exist'
+    return render_template('view_book_details.html', warning=msg)
 
     # Close DB Connection
     cur.close()
@@ -525,9 +521,8 @@ def transactions():
     # Render Template
     if result > 0:
         return render_template('transactions.html', transactions=transactions)
-    else:
-        msg = 'No Transactions Found'
-        return render_template('transactions.html', warning=msg)
+    msg = 'No Transactions Found'
+    return render_template('transactions.html', warning=msg)
 
     # Close DB Connection
     cur.close()
