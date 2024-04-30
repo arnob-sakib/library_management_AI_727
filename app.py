@@ -709,9 +709,6 @@ def reports():
         msg = msg+'No Books Found'
     return render_template('reports.html', members=members, books=books, warning=msg)
 
-    # Close DB Connection
-    cur.close()
-
 
 # Define Search-Form
 class SearchBook(Form):
