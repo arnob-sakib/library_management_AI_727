@@ -263,7 +263,7 @@ def add_book():
         result = cur.execute(
             "SELECT id FROM books WHERE id=%s", [form.id.data])
         book = cur.fetchone()
-        if(book):
+        if book:
             error = 'Book with that ID already exists'
             return render_template('add_book.html', form=form, error=error)
 
@@ -343,7 +343,7 @@ def import_books():
         # Loop and make request
         no_of_books_imported = 0
         repeated_book_ids = []
-        while(no_of_books_imported != form.no_of_books.data):
+        while no_of_books_imported != form.no_of_books.data:
             r = requests.get(url + urllib.parse.urlencode(parameters))
             res = r.json()
             # Break if message is empty
@@ -355,7 +355,7 @@ def import_books():
                 result = cur.execute(
                     "SELECT id FROM books WHERE id=%s", [book['bookID']])
                 book_found = cur.fetchone()
-                if(not book_found):
+                if not book_found:
                     # Execute SQL Query
                     cur.execute("INSERT INTO books (id,title,author,average_rating,isbn,isbn13,language_code,num_pages,ratings_count,text_reviews_count,publication_date,publisher,total_quantity,available_quantity) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", [
                         book['bookID'],
@@ -425,11 +425,11 @@ def edit_book(id):
     # To handle POST request to route
     if request.method == 'POST' and form.validate():
         # Check if book with same ID already exists (if ID field is being edited)
-        if(form.id.data != id):
+        if form.id.data != id:
             result = cur.execute(
                 "SELECT id FROM books WHERE id=%s", [form.id.data])
             book = cur.fetchone()
-            if(book):
+            if book:
                 error = 'Book with that ID already exists'
                 return render_template('edit_book.html', form=form, error=error, book=form.data)
 
@@ -579,7 +579,7 @@ def issue_book():
         available_quantity = result['available_quantity']
 
         # Check if book is available to be rented/issued
-        if(available_quantity < 1):
+        if available_quantity < 1:
             error = 'No copies of this book are availabe to be rented'
             return render_template('issue_book.html', form=form, error=error)
 
@@ -646,7 +646,7 @@ def return_book(transaction_id):
         result = cur.fetchone()
         outstanding_debt = result['outstanding_debt']
         amount_spent = result['amount_spent']
-        if(outstanding_debt + transaction_debt > 500):
+        if outstanding_debt + transaction_debt > 500:
             error = 'Outstanding Debt Cannot Exceed Rs.500'
             return render_template('return_book.html', form=form, error=error)
 
